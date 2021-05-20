@@ -11,11 +11,13 @@ struct ContentView: View {
     
     // MARK: - PROPERTIES
     
+    @State private var isShowingSettings: Bool = false
+    
     var fruits: [Fruit] = fruitsData
     
     // MARK: - BODY
     var body: some View {
-        NavigationView{
+        NavigationView {
             List {
                 ForEach(fruits.shuffled()) { item in
                     NavigationLink(
@@ -24,9 +26,20 @@ struct ContentView: View {
                             .padding(.vertical, 4)
                     }
                 }
-            }
+            } //: LIST
             .navigationTitle("Fruits")
-        }
+            .navigationBarItems(
+                trailing:
+                    Button(action: {
+                        isShowingSettings = true
+                    }) {
+                        Image(systemName: "slider.horizontal.3")
+                    }
+                    .sheet(isPresented: $isShowingSettings) {
+                        SettingsView()
+                    }
+            )
+        } //: NAVIGATION
     }
 }
 
