@@ -38,6 +38,18 @@ struct SettingsView: View {
                     // MARK: - SECTION 2
                     
                     // MARK: - SECTION 3
+                    GroupBox(
+                        label:
+                            SettingsLabelView(labelText: "Application", labelImage: "apps.iphone")
+                    ) {
+                        
+                        SettingsRowView(name: "Developer", content: "Baptiste Marcon")
+                        SettingsRowView(name: "Designer", content: "Baptiste Marcon")
+                        SettingsRowView(name: "Compatibility", content: "iOS 14")
+                        SettingsRowView(name: "Github Code", linkLabel: "Click Here", linkDestination: "github.com/baptistemcn/Fructus")
+                        SettingsRowView(name: "Github Profile", linkLabel: "Profile", linkDestination: "github.com/baptistemcn")
+                        
+                    } //: BOX
                     
                 } //: VStack
                 .navigationBarTitle(Text("Settings"), displayMode: .large)
