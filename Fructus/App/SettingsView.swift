@@ -12,6 +12,7 @@ struct SettingsView: View {
     // MARK: - PROPERTIES
     
     @Environment(\.presentationMode) var presentationMode
+    @AppStorage("isOnboarding") var isOnboarding: Bool = false
     
     // MARK: - BODY
     var body: some View {
@@ -36,6 +37,38 @@ struct SettingsView: View {
                     }
                     
                     // MARK: - SECTION 2
+                    GroupBox(
+                        label:
+                            SettingsLabelView(labelText: "Customization", labelImage: "paintbrush")
+                    ) {
+                        Divider().padding(.vertical, 4)
+                        
+                        Text("If you wish, you can restore the settings of the application by toogle the switch in this box.")
+                            .padding(.vertical, 8)
+                            .frame(minHeight: 60)
+                            .layoutPriority(1)
+                            .font(.footnote)
+                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                        
+                        Toggle(isOn: $isOnboarding) {
+                            if isOnboarding {
+                                Text("Restarted".uppercased())
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.green)
+                            } else {
+                                Text("Restart".uppercased())
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.secondary)
+                            }
+                        }
+                        .padding()
+                        .background(
+                            Color(UIColor.tertiarySystemBackground)
+                                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                        )
+                        
+                    } //: BOX
+                    
                     
                     // MARK: - SECTION 3
                     GroupBox(
